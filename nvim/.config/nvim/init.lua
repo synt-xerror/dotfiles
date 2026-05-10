@@ -3,6 +3,8 @@ vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.termguicolors = true
 
+vim.opt.fileformat = "unix"
+
 vim.o.timeout = true
 vim.o.timeoutlen = 300
 
@@ -167,7 +169,8 @@ dashboard.section.header.val = {
 
 require("lualine").setup({
   options = {
-    theme = "nightfly",
+    theme = "ayu-dark",
+    section_separators = { left = '', right = '' },
     component_separators = { left = '|', right = '|' }
   }
 })
