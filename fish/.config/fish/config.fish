@@ -3,7 +3,7 @@
 # ============================================================================
 
 status is-interactive; or exit
-set -U fish_greeting
+set -U fish_greeting "><> Hello, $USER"
 
 # ============================================================================
 # ENVIRONMENT VARIABLES
@@ -15,24 +15,22 @@ end
 
 set -gx EDITOR nvim
 set -gx force_color_prompt yes
+set -gx GPG_TTY (tty)
+set -Ux GPG_PINENTRY_MODE loopback
+gpgconf --kill gpg-agent
+gpgconf --launch gpg-agent
 
 # ============================================================================
 # PATH
 # ============================================================================
 
-set -gx PATH $HOME/.cargo/bin $HOME/.npm-global/bin $HOME/.local/bin $HOME/go/bin $PATH
+set -gx PATH $HOME/.local/share/gem/ruby/3.4.0/bin $HOME/.cargo/bin $HOME/.npm-global/bin $HOME/.local/bin $HOME/go/bin $PATH
 
 # ============================================================================
 # HISTORY (fish é automático, mas dá pra ajustar)
 # ============================================================================
 
 set -g fish_history 10000
-
-# ============================================================================
-# AUTOCOMPLETE / SUGGESTIONS (nativo no fish)
-# ============================================================================
-
-# nada necessário aqui
 
 # ============================================================================
 # SSH AGENT
@@ -42,7 +40,7 @@ if test -z "$SSH_AUTH_SOCK"
     eval (ssh-agent -c) >/dev/null
 end
 
-ssh-add ~/.ssh/codeberg_ed25519 2>/dev/null
+ssh-add ~/.ssh/key
 
 # ============================================================================
 # BINDS
@@ -74,16 +72,6 @@ bind \e\[1\~ beginning-of-line
 bind \e\[4\~ end-of-line
 
 # ============================================================================
-# PYTHON VENV
-# ============================================================================
-
-if test -f ~/.pyvenv/bin/activate.fish
-    source ~/.pyvenv/bin/activate.fish
-else if test -f ~/.pyvenv/bin/activate
-    source ~/.pyvenv/bin/activate
-end
-
-# ============================================================================
 # PROMPT
 # ============================================================================
 
@@ -105,7 +93,11 @@ end
 # ALIASES
 # ============================================================================
 
-alias ddgr='BROWSER=w3m ddgr'
+function ddgr
+  set -x BROWSER w3m
+  command ddgr $argv
+end
+
 alias sshrc='source ~/.config/fish/config.fish'
 alias shrc='$EDITOR ~/.config/fish/config.fish'
 
@@ -155,10 +147,8 @@ alias gca='git commit --amend'
 alias gtag='git tag'
 alias gseto='git remote set-url --add origin'
 
-# DWM
-alias cdwm='cd ~/work/active/dwm; $EDITOR config.h'
-alias sdwm='cd ~/work/active/dwm; $EDITOR dwm.c'
-alias bdwm='cd ~/work/active/dwm; sudo make clean install; cd -'
+# Sway
+alias swayrc='nvim /home/syntax/.config/sway/config'
 
 # Misc
 alias life='emacs -nw ~/life/life.org'
@@ -186,7 +176,3 @@ type -q setxkbmap; and setxkbmap br abnt2 2>/dev/null
 
 # STARTUP
 clear
-
-if test -x /home/linuxbrew/.linuxbrew/bin/brew
-    eval (/home/linuxbrew/.linuxbrew/bin/brew shellenv)
-end
