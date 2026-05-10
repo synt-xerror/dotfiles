@@ -1,10 +1,4 @@
 # ==========================================================
-# SWAY CONFIG — Minimalista / Dev / Terminal-First
-# Notebook + HDMI externo
-# Foco: velocidade, teclado, organização
-# ==========================================================
-
-# ==========================================================
 # VARIABLES
 # ==========================================================
 set $mod Mod4
@@ -22,6 +16,9 @@ set $right l
 # STARTUP
 # ==========================================================
 exec waybar
+exec udiskie --tray
+exec mako
+exec /home/syntax/scripts/hdmi-listen.sh
 
 # ==========================================================
 # OUTPUT / WALLPAPER
@@ -83,7 +80,7 @@ seat * hide_cursor 8000
 seat * hide_cursor when-typing enable
 
 blur enable
-blur_radius 7
+blur_radius 5
 corner_radius 10
 shadows enable
 
@@ -96,8 +93,6 @@ for_window [window_role="pop-up"] floating enable
 for_window [window_role="bubble"] floating enable
 for_window [window_role="dialog"] floating enable
 for_window [window_type="dialog"] floating enable
-
-for_window [app_id="kitty"] floating enable
 
 # ==========================================================
 # CORE APPLICATIONS
