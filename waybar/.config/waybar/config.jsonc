@@ -22,7 +22,7 @@
     "clock"
   ],
   "custom/expand": {
-    "format": "❮",
+    "format": "|",
     "tooltip": false
   },
   "sway/workspaces": {
@@ -31,23 +31,23 @@
   "cpu": {
     "interval": 2,
     "format": "cpu {usage}%",
-    "on-click": "ghostty -e btop"
+    "on-click": "kitty -e btop"
   },
   "memory": {
     "format": "mem {used:0.1f}gb",
     "interval": 2,
-    "on-click": "ghostty -e btop"
+    "on-click": "kitty -e btop"
   },
   "disk": {
     "interval": 30,
-    "format": "disk {percentage_free}%",
+    "format": "disk {percentage_used}%",
     "tooltip-format": "Used: {used}\nFree: {free}\nTotal: {total}",
-    "path": "/",
-    "on-click": "ghostty -e duf"
+    "path": "/home",
+    "on-click": "kitty -e duf"
   },
   "clock": {
     "format": "{:%H:%M}",
-    "format-alt": "{:L%A %d %B}",
+    "format-alt": "{:%a %Y-%m-%d}",
     "tooltip": false
   },
   "network": {

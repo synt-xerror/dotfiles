@@ -3,7 +3,7 @@
 # ============================================================================
 
 status is-interactive; or exit
-set -U fish_greeting "><> Hello, $USER"
+set -U fish_greeting ""
 
 # ============================================================================
 # ENVIRONMENT VARIABLES
@@ -85,7 +85,7 @@ function fish_prompt
     end
 
     set_color $color
-    echo -n (prompt_pwd) '$ '
+    echo -n (prompt_pwd) (fish_git_prompt) '$ '
     set_color normal
 end
 
@@ -105,6 +105,9 @@ alias yay='echo "yay was removed"; echo "try paru"'
 
 alias ..='cd ..'
 alias ...='cd ../..'
+
+alias volup="pactl set-sink-volume @DEFAULT_SINK@ +5%"
+alias voldown="pactl set-sink-volume @DEFAULT_SINK@ -5%"
 
 # Work directories
 alias w='cd ~/work'
@@ -176,3 +179,6 @@ type -q setxkbmap; and setxkbmap br abnt2 2>/dev/null
 
 # STARTUP
 clear
+if status is-interactive
+    task read &
+end

@@ -15,16 +15,21 @@ set $right l
 # ==========================================================
 # STARTUP
 # ==========================================================
-exec waybar
-exec udiskie --tray
-exec mako
-exec /home/syntax/scripts/hdmi-listen.sh
+#exec waybar
+#exec udiskie --tray
+#exec mako
+#exec /home/syntax/scripts/hdmi-listen.sh
+
+exec systemctl --user restart waybar
+exec systemctl --user restart udiskie
+exec systemctl --user restart mako
+exec systemctl --user restart battery-mode
+exec systemctl --user restart imapfilter
 
 # ==========================================================
 # OUTPUT / WALLPAPER
 # ==========================================================
-# Ajuste para seu wallpaper real
-output * bg /home/syntax/pic/wallpapers/luna.jpg fill
+output * bg /home/syntax/pic/wallpapers/lain3.jpeg fill
 
 # Monitor externo
 output HDMI-A-1 {
@@ -62,11 +67,12 @@ client.focused #718096 #404552 #f7fafc #718096 #718096
 
 font pango:DejaVu Sans Mono 9
 
-gaps inner 5
-smart_gaps on
+gaps inner 0
+gaps outer 0
+smart_gaps off
 
 default_border pixel 2
-default_floating_border pixel 2
+default_floating_border pixel 0
 
 hide_edge_borders --i3 smart
 
@@ -78,11 +84,6 @@ floating_modifier $mod normal
 
 seat * hide_cursor 8000
 seat * hide_cursor when-typing enable
-
-blur enable
-blur_radius 5
-corner_radius 10
-shadows enable
 
 # ==========================================================
 # GENERAL WINDOW RULES
@@ -100,7 +101,7 @@ for_window [window_type="dialog"] floating enable
 
 # Terminal
 bindsym $mod+Shift+Return exec $term
-bindsym $mod+Return exec $term -e tmux
+bindsym $mod+Return exec $term -e tmux new-session -A -s master
 
 # Launcher
 bindsym $mod+d exec $menu

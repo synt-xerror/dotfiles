@@ -1,4 +1,4 @@
-@define-color waybar-bg #070a24;
+@define-color waybar-bg #050505;
 @define-color waybar-fg #d0d0d0;
 
 @define-color waybar-warning #7a8b6e;
@@ -7,9 +7,9 @@
 @define-color waybar-surface #1e1e1e;
 @define-color waybar-surface-hover #2a2a2a;
 @define-color waybar-border #3a3a3a;
-@define-color waybar-workspace-active-bg #749ee3;
+@define-color waybar-workspace-active-bg #6a6a6a;
 /*@define-color waybar-workspace-occupied-fg #a0a0a0;*/
-@define-color waybar-workspace-empty-bg #273170;
+@define-color waybar-workspace-empty-bg #424242;
 
 * {
   background-color: transparent;
@@ -55,7 +55,6 @@ window#waybar {
   min-height: 12px;
   background-color: @waybar-workspace-empty-bg;
   font-weight: 400;
-  border-radius: 10;
   border: none;
   transition: background-color 0.2s ease, color 0.2s ease;
 }
